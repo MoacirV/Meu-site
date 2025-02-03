@@ -13,7 +13,7 @@
     --bg-color:#080808;
     --second-bg-color:#101010;
     --text-color:white;
-    --main-color:#ea580c;
+    --main-color:#2EE5D6;
 }
 
 html{
@@ -31,7 +31,7 @@ body{
     width: 100%;
     top: 0;
     left: 0;
-    padding: 4rem 15%;
+    padding: 4rem 8%;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     display: flex;
@@ -61,8 +61,8 @@ body{
 span{
     background: linear-gradient(
         270deg, 
-        #DF8908 10%,
-        #ff1d15 100%
+        #007EE5 10%,
+        #00C1E5 100%
     );
     background-clip: text;
     color: transparent;
@@ -88,8 +88,8 @@ span{
     border-radius: 3rem;
     background: linear-gradient(
         270deg, 
-        #DF8908 10%,
-        #ff1d15 100%
+        #007EE5 10%,
+        #00C1E5 100%
     );
     letter-spacing: 1px;
     cursor:pointer;
@@ -131,7 +131,7 @@ section{
 
 .home-content h3{
     margin: 1rem 0;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .home-content p {
@@ -140,6 +140,7 @@ section{
 }
 
 .home-img img{
+    object-fit: cover;
     width: 32vw;
     border-radius: 50%;
     box-shadow: 0  0 25px var(--main-color);
@@ -285,7 +286,7 @@ section{
     justify-content: center;
     align-items: center;
     background-color: var(--main-color);
-    height: 600px;
+    height: 400px;
     border-radius: 3rem;
     cursor: pointer;
     border: 5px solid transparent;
@@ -315,7 +316,7 @@ section{
 }
 
 .services-info p{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.7;
 }
@@ -330,11 +331,11 @@ section{
     background-color: var(--second-bg-color);
 }
 
-.projects-box{
+.projects-box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
-    gap: 3rem;
+    gap: 15rem;
     row-gap: 5rem;
 }
 
@@ -349,7 +350,7 @@ section{
     border: 2px solid var(--main-color);
     border-radius: 3rem;
     gap: 2rem;  
-    padding: 5rem 2rem;
+    padding: 2rem 2rem;
     overflow: hidden;
     cursor: pointer;
     box-shadow:  0 0 5px var(--main-color);
@@ -373,7 +374,7 @@ section{
 }
 
 .project-card p{
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 
 /* Contatos */
