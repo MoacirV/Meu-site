@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/pokemon.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    border: none;
+    font: normal 1em 'Press Start 2P', cursive;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-image: url('../assets/pokemons/bigthree.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 50px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 0 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    gap: 15px;
+    width: 700px;
+    max-width: 800px;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.card {
+    aspect-ratio: 3/4;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    transition: all 400ms ease;
+    transform-style: preserve-3d;
+    background-color: #ccc;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #39813a;
+    border-radius: 5px;
+    transition: all 400ms ease;
+}
+
+.front {
+    /*Ajusta a dimenção da imagem para  redimensionar de modo que se asjute a caixa*/
+    transform: rotateY(180deg);
+}
+
+.back {
+    background-image: url('../assets/pokemons/carta.webp');
+    /*Esconde a parte de trás de carta ao virar*/
+    backface-visibility: hidden;
+}
+
+.reveal-card {
+    transform: rotateY(180deg);
+}
+
+.disabled-card {
+    filter: saturate(0);
+    opacity: 0.5;
+}
+
+@media screen and (max-width:1000px){
+    .card{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:800px){
+    .grid{
+        gap: 5px;
+        width: 100%;
+        height: 500px;
+    }
+
+
+}
+    </style>
+    <title>PLAY</title>
+</head>
+<body>
+
+    <main>
+        <header>
+            <span class="player">JOGO DA MEMÓRIA</span>
+            <span>Tempo: <span class="timer">00</span></span>
+        </header>
+        
+        <div class="grid"></div>
+    </main>
+    <script>
+        const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
+
+const characters = [
+    'zubat',
+    'pikachu',
+    'squirtle',
+    'charmander',
+    'bulbasaur',
+    'gastly',
+    'psiduck',
+    'eevee',
+    'vulpix',
+    'mew',
+];
+
+const createElement = (tag, className) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    return element;
+}
+
+let firstCard = '';
+let secondCard= '';
+
+const checkEndGame = () => {
+    const disabledCards = document.querySelectorAll('.disabled-card');
+
+    if (disabledCards.length === 20) {
+        clearInterval(this.loop);
+
+        setTimeout(() => {
+            alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}`);
+        }, 500);
+    }
+
+    
+}
+
+const checkCards = () => {
+    const firstCharacter = firstCard.getAttribute('data-character');
+    const secondCharacter = secondCard.getAttribute('data-character');
+
+    if (firstCharacter === secondCharacter) {
+
+        firstCard.firstChild.classList.add('disabled-card');
+        secondCard.firstChild.classList.add('disabled-card');
+
+        firstCard = '';
+        secondCard = '';
+
+        checkEndGame();
+
+    } else {
+        //adciona um intervalo antes de reveal a carta novamente. Obs: no caso de serem diferentes//
+        setTimeout(() => {
+            firstCard.classList.remove('reveal-card');
+            secondCard.classList.remove('reveal-card');
+            
+            firstCard = '';
+            secondCard = '';
+
+        }, 500);
+
+        
+    }
+}
+
+const revealCard = ({target}) => {
+    if (target.parentNode.className.includes('reveal-card')) {
+        return;
+    }
+
+    if (firstCard === '') {
+        target.parentNode.classList.add('reveal-card');
+        firstCard = target.parentNode;
+    } else if (secondCard === '') {
+        target.parentNode.classList.add('reveal-card');
+        secondCard = target.parentNode;
+
+        checkCards();
+
+    }
+
+    
+}
+
+const createCard = (character) => {
+
+    const card = createElement('div', 'card');
+    const front = createElement('div', 'face front');
+    const back = createElement('div', 'face back');
+
+    front.style.backgroundImage = `url('../assets/pokemons/${character}.jpg')`;
+
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.addEventListener('click', revealCard);
+    card.setAttribute('data-character', character)
+
+    return card;
+}
+
+const loadGame = () => {
+
+    const duplicateCharacters = [...characters, ...characters];
+
+    const shuffLeadArray = duplicateCharacters.sort(() => Math.random() - 0.5);
+    
+    shuffLeadArray.forEach((character) => {
+
+        const card = createCard(character);
+        grid.appendChild(card);
+    });
+}
+
+const startTimer = () => {
+    //Armazenar o tempo que foi finalizado o game (this.loop =)//
+    this.loop = setInterval(() => {
+        //convertendo em número as strings que o timer está capturando//
+        const currentTime = Number(timer.innerHTML);
+        //Poderia ser também://
+        //const currentTime = +timer.innerHTML;//
+        timer.innerHTML = currentTime + 1;
+    }, 1000)
+}
+
+//Quando a janela carregar, as cartas são distribuidas//
+window.onload = () => {
+
+    spanPlayer.innerHTML = localStorage.getItem('player');
+    startTimer();
+    loadGame();
+}
+    </script>
+</body>
+</html>
