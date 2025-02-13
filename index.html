@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="style.css">
     <title>Moacir Vieira</title>
 </head>
@@ -70,6 +69,40 @@
             <p>Olá, tenho 24 e estudo a área da programação a mais de 2 anos. Fui para área de tecnologia por influencia de amigos e aqui, descobri que éa  minha paixão, quer um conselho? Tenha amigos. <br>
             Meu foco é desenvolver aplicações e sites responsivos com designer gráficos modernos.</p>
             <a href="#" class="btn">Leia Mais</a>
+        </div>
+    </section>
+
+    <section id="ferramentas">
+        <div class="stack-area">
+            <div class="left">
+                <div class="title">Minhas ferramentas</div>
+                <div class="sub-title">
+                <p>No desenvolvimento web o conhecimento de algumas tecnologias é essencial para criação e aperfeiçoamento de websites.</p>
+                <p>
+                    A área de Ti vai se atualizando constantemente e é importante não ficar para trás, tudo isso para oferecer a você o produto mais atualizado possível, sempre dentro da que está em alta no momento.
+                </p>
+                <br />
+                <button>Ler mais</button>
+                </div>
+            </div>
+            <div class="right">
+                <div class="card">
+                <div class="sub">HTML</div>
+                <div class="content">O esqueleto do site, o que traz forma.</div>
+                </div>
+                <div class="card">
+                <div class="sub">CSS</div>
+                <div class="content">Elementos visuais, o que traz beleza ao site</div>
+                </div>
+                <div class="card">
+                <div class="sub">JavaScript</div>
+                <div class="content">Coloca interação no site, como nessas cartas.</div>
+                </div>
+                <div class="card">
+                <div class="sub">Support</div>
+                <div class="content">Now its 24/7 support</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -229,6 +262,62 @@
             @ Moacir Vieira | Todos os direitos reservados
         </p>
     </footer>
+    <script>
+        let cards = document.querySelectorAll(".card");
+  
+        let stackArea = document.querySelector(".stack-area");
+  
+        function rotateCards() {
+          let angle = 0;
+          cards.forEach((card, index) => {
+            if (card.classList.contains("away")) {
+              card.style.transform = `translateY(-120vh) rotate(-48deg)`;
+            } else {
+              card.style.transform = ` rotate(${angle}deg)`;
+              angle = angle - 10;
+              card.style.zIndex = cards.length - index;
+            }
+          });
+        }
+  
+        rotateCards();
+  
+        window.addEventListener("scroll", () => {
+          let distance = window.innerHeight * 0.5;
+  
+          let topVal = stackArea.getBoundingClientRect().top;
+  
+          let index = -1 * (topVal / distance + 1);
+  
+          index = Math.floor(index);
+  
+          for (i = 0; i < cards.length; i++) {
+            if (i <= index) {
+              cards[i].classList.add("away");
+            } else {
+              cards[i].classList.remove("away");
+            }
+          }
+          rotateCards();
+        });
+
+        function getRandomBlue() {
+            let shadesOfBlue = [
+                "#1E90FF", "#4169E1", "#0000FF", "#00BFFF", "#4682B4", 
+                "#5F9EA0", "#87CEEB", "#6495ED", "#191970", "#7B68EE"
+            ];
+            return shadesOfBlue[Math.floor(Math.random() * shadesOfBlue.length)];
+        }
+
+        function applyRandomBlue() {
+            document.querySelectorAll(".card").forEach(card => {
+                card.style.backgroundColor = getRandomBlue();
+            });
+        }
+
+        applyRandomBlue();
+
+      </script>
     
 </body>
 </html>

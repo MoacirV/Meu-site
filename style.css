@@ -27,6 +27,12 @@ body{
     color: var(--text-color);
 }
 
+section{
+    min-height: 100vh;
+    padding: 10rem 15%;
+}
+
+
 .header{
     position: fixed;
     width: 100%;
@@ -104,12 +110,9 @@ span{
     transform: scale(1.05);
 }
 
-section{
-    min-height: 100vh;
-    padding: 10rem 15%;
-}
 
 .home{
+    background: var(--second-bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -218,12 +221,14 @@ section{
     color: black;
 }
 
+/*  Sobre mim */
+
 .about{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10rem;
-    background: var(--second-bg-color);
+    background: var(--bg-color);
 }
 
 .about-img img{
@@ -265,6 +270,125 @@ section{
 ::-webkit-scrollbar-track{
     background-color: var(--bg-color);
 }
+
+/* Ferramentas */
+
+#ferramentas{
+    background: var(--second-bg-color);
+    padding: 10rem 5%;
+}
+
+
+.stack-area {
+    width: 100%;
+    height: 300vh;
+    position: relative;
+    display: flex;
+
+  }
+  .left {
+    height: 100vh;
+    flex-basis: 50%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    
+  }
+
+  .right {
+    height: 100vh;
+    flex-basis: 50%;
+    position: sticky;
+    top: 0;
+  }
+  /*Styling for the left elements content starts here...*/
+  .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+  }
+  .title {
+    width: 420px;
+    font-size: 84px;
+    font-family: poppins;
+    font-weight: 700;
+    line-height: 88px;
+  }
+  .sub-title {
+    width: 420px;
+    font-family: poppins;
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .sub-title button {
+    font-family: poppins;
+    font-size: 14px;
+    padding: 15px 30px;
+    background: black;
+    color: white;
+    border-radius: 8mm;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  /*Styling for the left elements content ends here...*/
+
+  .card {
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    position: absolute;
+    top: calc(50% - 175px);
+    left: calc(50% - 175px);
+    transition: 0.5s ease-in-out;
+  }
+  /* .card:nth-child(1) {
+    background: rgb(64, 122, 255);
+  }
+  .card:nth-child(2) {
+    background: rgb(221, 62, 88);
+  }
+  .card:nth-child(3) {
+    background: rgb(186, 113, 245);
+  }
+  .card:nth-child(4) {
+    background: rgb(247, 92, 208);
+  } */
+
+  /*Styling for the card content starts here...*/
+  .card {
+    box-sizing: border-box;
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .sub {
+    font-family: poppins;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .title,
+  .sub-title{
+    color: rgb(255, 255, 255);
+  }
+  .content {
+    font-family: poppins;
+    font-size: 2.3rem;
+    font-weight: 700;
+    line-height: 54px;
+  }
+  /*Styling for the card content ends here...*/
+
+  .away {
+    transform-origin: bottom left;
+  }
 
 /* Services */
 
