@@ -347,17 +347,23 @@ span{
     left: calc(50% - 175px);
     transition: 0.5s ease-in-out;
   }
-  /* .card:nth-child(1) {
+  .card:nth-child(1) {
     background: rgb(64, 122, 255);
   }
   .card:nth-child(2) {
-    background: rgb(221, 62, 88);
+    background: rgb(43, 97, 221);
   }
   .card:nth-child(3) {
-    background: rgb(186, 113, 245);
+    background: rgb(7, 53, 161);
   }
   .card:nth-child(4) {
-    background: rgb(247, 92, 208);
+    background: rgb(71, 118, 226);
+  }
+  /* .card:nth-child(5) {
+    background: rgb(3, 34, 105);
+  }
+  .card:nth-child(6) {
+    background: rgb(3, 34, 105);
   } */
 
   /*Styling for the card content starts here...*/
